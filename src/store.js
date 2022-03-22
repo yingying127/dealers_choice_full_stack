@@ -5,14 +5,19 @@ import logger from 'redux-logger';
 
 //action constants:
 const LOAD_NOODLES = 'LOAD_NOODLES'
+const CREATE_NOODLES = 'CREATE_NOODLES'
 
 //reducers:
 const noodlesReducer = (state = [], action) => {
     if (action.type === LOAD_NOODLES) {
         state = action.noodles
     }
+    if (action.type === CREATE_NOODLES) {
+        state = [...state, action.noodles]
+    }
     return state;
 }
+
 
 //OLD store:
 // const store = createStore((state = { noodles: [] }, action) => {
@@ -45,6 +50,17 @@ const loadNoodles = () => {
     }
 }
 
+const _createNoodles = (noodles) => { return {type: CREATE_NOODLES, noodles }}
+
+const createNoodles = () => {
+    return async(dispatch) => {
+        const noodles = (await axios.post('/api/noodles', { name })).data
+        dispatch(_createNoodles(noodles))
+    }
+}
 
 export default store;
-export { loadNoodles } 
+export { 
+    loadNoodles,
+    createNoodles
+} 

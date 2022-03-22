@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import axios from 'axios';
 import { connect, Provider } from 'react-redux';
 import store, { loadNoodles } from './store'
-import Noodles from './Noodle'
+import Noodles from './Noodles';
+import Noodle from './Noodle';
+import { HashRouter, Route } from 'react-router-dom'
 
 // ORIGINAL REACT:
 // class App extends Component {
@@ -54,14 +55,19 @@ const App = connect(
         this.props.bootstrap();
     }
     render() {
-        const { noodles } = this.props;
+        // const { noodles } = this.props;
         return (
             <div>
                 <h1>Sunsweet's Noodle Shop</h1>
-                <Noodles />
+                <Route exact path='/' component={ Noodles} />
+                <Route path='/:id' component={ Noodle } />
             </div>
         )
     }
 })
 
-render(<Provider store={store}><App /></Provider>, document.querySelector('#root'));
+render(<Provider store={store}>
+    <HashRouter>
+        <App />
+    </HashRouter>
+    </Provider>, document.querySelector('#root'));
