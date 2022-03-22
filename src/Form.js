@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createNoodles } from './store'
 
 class Form extends Component {
     constructor() {
@@ -8,7 +9,6 @@ class Form extends Component {
             noodleId: '',
             name: ''
         }
-        //this is after save(ev) & can 
         this.save = this.save.bind(this)
     }
     save(ev) {
@@ -17,7 +17,7 @@ class Form extends Component {
             name: this.state.name,
             noodleId: this.state.noodleId
         }
-        console.log(noodle)
+        this.props.create(noodle)
     }
     render() {
         const { noodles } = this.props
@@ -115,7 +115,7 @@ class Form extends Component {
         )
     }
 }
-4) SAVE METHOD & SAVING THE FORM
+4) SAVE METHOD & SAVING THE FORM && CREATING & DISPATCH
 class Form extends Component {
     constructor() {
         super()
@@ -124,7 +124,6 @@ class Form extends Component {
             name: ''
         }
         this.save = this.save.bind(this)
-
     }
     save(ev) {
         ev.preventDefault();
@@ -132,6 +131,7 @@ class Form extends Component {
             name: this.state.name,
             noodleId: this.state.noodleId
         }
+        this.props.create(noodle)
         console.log(noodle)
     }
     render() {
@@ -158,6 +158,15 @@ class Form extends Component {
         )
     }
 }
+
+const mapDispatch = (dispatch) => {
+    return {
+        create: async(noodles) => {
+            await dispatch(createNoodles(noodles))
+        }
+    }
+}
+^^ createNoodles is from store.js [CreateNoodles] && created with post in server.js
 */
 
         return (
@@ -181,4 +190,12 @@ class Form extends Component {
     }
 }
 
-export default connect(state => state)(Form)
+const mapDispatch = (dispatch) => {
+    return {
+        create: async(noodles) => {
+            await dispatch(createNoodles(noodles))
+        }
+    }
+}
+
+export default connect(state => state, mapDispatch)(Form)

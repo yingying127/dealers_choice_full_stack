@@ -62,7 +62,7 @@ const App = connect(
                 <h1>Sunsweet's Noodle Shop</h1>
                 <Route exact path='/' component={ Noodles} />
                 <Route path='/:id' component={ Noodle } />
-                <Route exact path='/' component={Form } />
+                <Form />
             </div>
         )
     }

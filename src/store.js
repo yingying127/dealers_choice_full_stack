@@ -53,7 +53,7 @@ const loadNoodles = () => {
 
 const createNoodles = (name) => {
     return async(dispatch) => {
-        const noodles = (await axios.post('/api/noodles', { name })).data;
+        const noodles = (await axios.post('/api/noodles', name)).data;
         dispatch(_createNoodles(noodles))
     }
 }
