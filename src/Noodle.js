@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Noodles = ({ noodles })  => {
+const Noodle = ({ noodles, match })  => {
     return (
         <div>
             <ul>
                 {
-                    noodles.map(noodle => {
+                    noodles.filter(noodle => noodle.id === match.params.id*1).map(noodle => {
                         return (
                             <ul key={noodle.id}>
-                                <Link to={`/${noodle.id}`}>
+                                <Link to={'/'}>
                                     { noodle.name }
                                 </Link>
                             </ul>
@@ -28,4 +28,4 @@ const mapState = ({ noodles }) => {
     }
 }
 
-export default connect(mapState)(Noodles);
+export default connect(mapState)(Noodle);
