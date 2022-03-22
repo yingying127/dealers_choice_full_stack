@@ -15,6 +15,15 @@ app.get('/api/noodles', async(req, res, next) => {
     }
 })
 
+app.post('/api/noodles', async(req, res, next) => {
+    try {
+        res.status(201).send(await Noodle.create(req.body))
+    }
+    catch(ex) {
+        next(ex)
+    }
+})
+
 const init = async() => {
     try {
         await syncAndSeed();
