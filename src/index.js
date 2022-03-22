@@ -4,6 +4,7 @@ import { connect, Provider } from 'react-redux';
 import store, { loadNoodles } from './store'
 import Noodles from './Noodles';
 import Noodle from './Noodle';
+import Form from './Form'
 import { HashRouter, Route } from 'react-router-dom'
 
 // ORIGINAL REACT:
@@ -61,6 +62,7 @@ const App = connect(
                 <h1>Sunsweet's Noodle Shop</h1>
                 <Route exact path='/' component={ Noodles} />
                 <Route path='/:id' component={ Noodle } />
+                <Route exact path='/' component={Form } />
             </div>
         )
     }
