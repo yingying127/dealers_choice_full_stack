@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { destroyNoodles } from './store'
 
-const Noodle = ({ noodles, match })  => {
+const Noodle = ({ noodles, destroyNoodles, match })  => {
     return (
         <div>
             <ul>
@@ -13,6 +14,7 @@ const Noodle = ({ noodles, match })  => {
                                 <Link to={'/'}>
                                     { noodle.name }
                                 </Link>
+                                <button id='deleteButton' onClick={() => destroyNoodles(noodle)}>x</button>
                             </ul>
                         )
                     })
@@ -22,10 +24,11 @@ const Noodle = ({ noodles, match })  => {
     )
 }
 
-const mapState = ({ noodles }) => {
+const mapDispatch = (dispatch) => {
     return {
-        noodles
+        destroyNoodles: (noodles) => {
+            dispatch(destroyNoodles(noodles))
+        }
     }
 }
-
-export default connect(mapState)(Noodle);
+export default connect(state => state, mapDispatch)(Noodle);

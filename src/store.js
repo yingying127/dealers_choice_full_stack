@@ -6,6 +6,7 @@ import logger from 'redux-logger';
 //action constants:
 const LOAD_NOODLES = 'LOAD_NOODLES'
 const CREATE_NOODLES = 'CREATE_NOODLES'
+const DESTROY_NOODLES = 'DESTROY_NOODLES'
 
 //reducers:
 const noodlesReducer = (state = [], action) => {
@@ -14,6 +15,10 @@ const noodlesReducer = (state = [], action) => {
     }
     if (action.type === CREATE_NOODLES) {
         state = [...state, action.noodles]
+    }
+    if (action.type === DESTROY_NOODLES) {
+        const noodles = state.filter((noodle) => noodle.id !== action.noodle.id);
+        return noodles;
     }
     return state;
 }
@@ -43,6 +48,7 @@ const store = createStore(reducer, applyMiddleware(thunk, logger))
 //action creators:
 const _loadNoodles = (noodles) => { return { type: LOAD_NOODLES, noodles }};
 const _createNoodles = (noodles) => { return { type: CREATE_NOODLES, noodles }};
+const _destroyNoodles = (noodles) => { return { type: DESTROY_NOODLES, noodles }};
 
 const loadNoodles = () => {
     return async(dispatch) => {
@@ -58,8 +64,16 @@ const createNoodles = (name) => {
     }
 }
 
+const destroyNoodles = (noodles, history) => {
+    return async(dispatch) => {
+        await axios.delete(`/api/noodles/${noodles.id}`)
+        dispatch(_destroyNoodles(noodles))
+    }
+}
+
 export default store;
 export { 
     loadNoodles,
-    createNoodles
+    createNoodles,
+    destroyNoodles
 } 

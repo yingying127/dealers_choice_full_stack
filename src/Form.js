@@ -173,7 +173,7 @@ const mapDispatch = (dispatch) => {
             <form onSubmit={ save }>
                 <input onChange={ev => this.setState({ name: ev.target.value })} name='name' placeholder='noodle name' value={ name } />
                 <select value={ noodleId } name='noodleId' onChange={ev => this.setState({ noodleId: ev.target.value })}>
-                    <option value=''> --select an noodle-- </option>
+                    <option value=''> --select a noodle-- </option>
                     {
                         noodles.map( noodle => {
                             return (
@@ -190,7 +190,8 @@ const mapDispatch = (dispatch) => {
     }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, otherProps) => {
+    console.log(otherProps)
     return {
         create: async(noodles) => {
             await dispatch(createNoodles(noodles))
