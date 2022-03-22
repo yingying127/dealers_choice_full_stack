@@ -24,10 +24,10 @@ const Noodles = ({ noodles, destroyNoodles })  => {
     )
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
     return {
         destroyNoodles: (noodles) => {
-            dispatch(destroyNoodles(noodles))
+            dispatch(destroyNoodles(noodles, history))
         }
     }
 }
