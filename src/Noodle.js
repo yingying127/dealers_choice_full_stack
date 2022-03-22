@@ -15,13 +15,14 @@ const Noodle = ({ noodles, destroyNoodles, match })  => {
                                     { noodle.name }
                                 </Link>
                                 <button id='deleteButton' onClick={() => destroyNoodles(noodle)}>x</button>
+                                <p>
+                                    {noodle.name} details
+                                </p>
                             </ul>
                         )
                     })
                 }
             </ul>
-            noodle details
-
         </div>
     )
 }

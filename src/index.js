@@ -60,7 +60,7 @@ const App = connect(
         return (
             <div>
                 <h1>Sunsweet's Noodle-y Shop</h1>
-                <Route exact path='/' component={ Noodles} />
+                <Route exact path='/' component={ Noodles } />
                 <Route path='/:id' component={ Noodle } />
                 <Route exact path='/' component={ Form } />
             </div>

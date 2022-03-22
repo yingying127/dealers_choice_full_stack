@@ -20,7 +20,7 @@ class Form extends Component {
         this.props.create(noodle)
     }
     render() {
-        const { noodles } = this.props
+        // const { noodles } = this.props
         // const { name, noodleId } = this.state;
         const { name } = this.state;
         const { save } = this;
@@ -172,7 +172,7 @@ const mapDispatch = (dispatch) => {
 
         return (
             <form onSubmit={ save }>
-                <input onChange={ev => this.setState({ name: ev.target.value })} name='name' placeholder='noodle name' value={ name } />
+                <input onChange={ev => this.setState({ name: ev.target.value })} name='name' placeholder=' noodle name' value={ name } />
                 {/* <select value={ noodleId } name='noodleId' onChange={ev => this.setState({ noodleId: ev.target.value })}> */}
                     {/* <option value=''> --select a noodle-- </option> */}
                     {/* {
@@ -186,7 +186,7 @@ const mapDispatch = (dispatch) => {
                     } */}
                 {/* </select> */}
                 {/* <button disabled={ !name || !noodleId }>Create Noodles</button> */}
-                <button disabled={ !name }>Create Noodles</button>
+                <button id='createButton' disabled={ !name }>Create Your Favorite Noodles</button>
             </form>
         )
     }

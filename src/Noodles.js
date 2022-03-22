@@ -12,9 +12,8 @@ const Noodles = ({ noodles, destroyNoodles })  => {
                         return (
                             <ul key={noodle.id}>
                                 <Link to={`/${noodle.id}`}>
-                                    { noodle.name }
+                                    { noodle.name } Noodles
                                 </Link>
-                                <button id='deleteButton' onClick={() => destroyNoodles(noodle)}>x</button>
                             </ul>
                         )
                     })
@@ -24,10 +23,10 @@ const Noodles = ({ noodles, destroyNoodles })  => {
     )
 }
 
-const mapDispatch = (dispatch, { history }) => {
+const mapDispatch = (dispatch) => {
     return {
         destroyNoodles: (noodles) => {
-            dispatch(destroyNoodles(noodles, history))
+            dispatch(destroyNoodles(noodles))
         }
     }
 }
