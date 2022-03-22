@@ -57,10 +57,11 @@ const loadNoodles = () => {
     }
 }
 
-const createNoodles = (name) => {
+const createNoodles = (name, history) => {
     return async(dispatch) => {
         const noodles = (await axios.post('/api/noodles', name)).data;
         dispatch(_createNoodles(noodles))
+        history.push(`/${response.data.id}`)
     }
 }
 

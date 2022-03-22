@@ -6,7 +6,7 @@ class Form extends Component {
     constructor() {
         super();
         this.state = {
-            noodleId: '',
+            // noodleId: '',
             name: ''
         }
         this.save = this.save.bind(this)
@@ -15,15 +15,16 @@ class Form extends Component {
         ev.preventDefault();
         const noodle = {
             name: this.state.name,
-            noodleId: this.state.noodleId
+            // noodleId: this.state.noodleId
         }
         this.props.create(noodle)
     }
     render() {
         const { noodles } = this.props
-        const { name, noodleId } = this.state;
+        // const { name, noodleId } = this.state;
+        const { name } = this.state;
         const { save } = this;
-        console.log(name, noodleId)
+        // console.log(name, noodleId)
 /*
 0) AS A CLASS
 class Form extends Component {
@@ -172,9 +173,9 @@ const mapDispatch = (dispatch) => {
         return (
             <form onSubmit={ save }>
                 <input onChange={ev => this.setState({ name: ev.target.value })} name='name' placeholder='noodle name' value={ name } />
-                <select value={ noodleId } name='noodleId' onChange={ev => this.setState({ noodleId: ev.target.value })}>
-                    <option value=''> --select a noodle-- </option>
-                    {
+                {/* <select value={ noodleId } name='noodleId' onChange={ev => this.setState({ noodleId: ev.target.value })}> */}
+                    {/* <option value=''> --select a noodle-- </option> */}
+                    {/* {
                         noodles.map( noodle => {
                             return (
                                 <option value={ noodle.id} key={noodle.id}>
@@ -182,9 +183,10 @@ const mapDispatch = (dispatch) => {
                                 </option>
                             )
                         })
-                    }
-                </select>
-                <button disabled={ !name || !noodleId }>Create Noodles</button>
+                    } */}
+                {/* </select> */}
+                {/* <button disabled={ !name || !noodleId }>Create Noodles</button> */}
+                <button disabled={ !name }>Create Noodles</button>
             </form>
         )
     }
@@ -194,7 +196,7 @@ const mapDispatch = (dispatch, otherProps) => {
     console.log(otherProps)
     return {
         create: async(noodles) => {
-            await dispatch(createNoodles(noodles))
+            await dispatch(createNoodles(noodles, history))
         }
     }
 }
