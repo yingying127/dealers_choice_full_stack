@@ -59,10 +59,10 @@ const App = connect(
         // const { noodles } = this.props;
         return (
             <div>
-                <h1>Sunsweet's Noodle Shop</h1>
+                <h1>Sunsweet's Noodle-y Shop</h1>
                 <Route exact path='/' component={ Noodles} />
                 <Route path='/:id' component={ Noodle } />
-                <Route component={ Form } />
+                <Route exact path='/' component={ Form } />
             </div>
         )
     }

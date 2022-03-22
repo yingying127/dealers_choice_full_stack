@@ -20,14 +20,16 @@ const Noodle = ({ noodles, destroyNoodles, match })  => {
                     })
                 }
             </ul>
+            noodle details
+
         </div>
     )
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
     return {
-        destroyNoodles: (noodles) => {
-            dispatch(destroyNoodles(noodles))
+        destroyNoodles: async(noodles) => {
+            await dispatch(destroyNoodles(noodles, history))
         }
     }
 }

@@ -192,8 +192,8 @@ const mapDispatch = (dispatch) => {
     }
 }
 
-const mapDispatch = (dispatch, otherProps) => {
-    console.log(otherProps)
+const mapDispatch = (dispatch, { history }) => {
+    // console.log(history)
     return {
         create: async(noodles) => {
             await dispatch(createNoodles(noodles, history))

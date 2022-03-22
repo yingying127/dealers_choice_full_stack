@@ -17,8 +17,7 @@ const noodlesReducer = (state = [], action) => {
         state = [...state, action.noodles]
     }
     if (action.type === DESTROY_NOODLES) {
-        const noodles = state.filter((noodle) => noodle.id !== action.noodle.id);
-        return noodles;
+        state = state.filter(noodles => noodles.id !== action.noodles.id);
     }
     return state;
 }
@@ -61,7 +60,7 @@ const createNoodles = (name, history) => {
     return async(dispatch) => {
         const noodles = (await axios.post('/api/noodles', name)).data;
         dispatch(_createNoodles(noodles))
-        history.push(`/${response.data.id}`)
+        history.push(`/${noodles.id}`)
     }
 }
 
@@ -69,6 +68,7 @@ const destroyNoodles = (noodles, history) => {
     return async(dispatch) => {
         await axios.delete(`/api/noodles/${noodles.id}`)
         dispatch(_destroyNoodles(noodles))
+        history.push('/')
     }
 }
 
